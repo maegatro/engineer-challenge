@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "license": "no license",
   "private": true,
+  "proxy": "http://localhost:4000",
   "dependencies": {
     "@prisma/client": "3.11.1",
     "express": "^4.17.3",

@@ -5,6 +5,23 @@ const app = express();
 const port = 4000;
 const prisma = new PrismaClient();
 
+const allowCrossDomain = function(req:any, res:any, next:any) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, access_token'
+  )
+
+  if ('OPTIONS' === req.method) {
+    res.send(200)
+  } else {
+    next()
+  }
+}
+
+app.use(allowCrossDomain)
+
 app.use(express.json())
 
 app.get('/policies', async (req, res) => {
