@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
 import Badge from "./Badge";
-import axios from "axios";
+import { Data } from "./App";
 
-const Table = () => {
-  const [data, setData] = useState<any>([]);
+interface TableProps {
+  results: Data[],
+  indexOfFirstPost: number
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const getData = await axios.get("http://localhost:4000/policies");
-      setData(getData.data)
-    }
-    fetchData();
-  }, []);
-
+const Table = ({results, indexOfFirstPost}: TableProps) => {
+  
   return (
     <>
       <div className="flex flex-col">
@@ -40,10 +35,11 @@ const Table = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {data ? data.map((item:any, index:number) => {
+                  {results ? results
+                  .map((item:Data, index:number) => {
                     return (
                       <tr key={item.id} className="border-b">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{indexOfFirstPost + index + 1}</td>
                         <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                           {`${item.customer.firstName} ${item.customer.lastName}`}
                         </td>

@@ -1,4 +1,4 @@
-type Status = 'ACTIVE' | 'PENDING' | 'CANCELLED' | 'DROPPED_OUT'
+import { Status } from "./App";
 
 interface BadgeProps {
   status: Status
